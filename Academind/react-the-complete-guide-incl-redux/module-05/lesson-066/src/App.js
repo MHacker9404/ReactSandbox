@@ -60,7 +60,7 @@ class App extends Component {
                                 changed={(event) =>
                                     this.nameChangedHandler(event, person.id)
                                 }>
-                                My hobby is {person.hobby}
+                                <p>My hobby is {person.hobby}</p>
                             </Person>
                         );
                     })}
@@ -68,9 +68,18 @@ class App extends Component {
             );
         }
 
+        const classes = [];
+        if (this.state.persons.length <= 2) {
+            classes.push('red');
+        }
+        if (this.state.persons.length <= 1) {
+            classes.push('bold');
+        }
+
         return (
             <div className='App'>
                 <h1>Hi, I'm a React App</h1>
+                <p className={classes.join(' ')}>This is really working!</p>
                 <button style={style} onClick={this.togglePersonsHandler}>
                     Toggle list
                 </button>
