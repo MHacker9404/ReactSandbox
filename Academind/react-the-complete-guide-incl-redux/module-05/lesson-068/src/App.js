@@ -5,8 +5,8 @@ import Person from './Person/Person';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-    background-color: this.state.showPersons ? coral : lightgreen;
-    color: this.state.showPersons ? black : red;
+    background-color: ${(props) => (props.alt ? 'coral' : 'lightgreen')};
+    color: ${(props) => (props.alt ? 'black' : 'red')};
     font: inherit;
     border: 2px dashed blue;
     padding: 8px;
@@ -103,7 +103,9 @@ class App extends Component {
                 {/* <button style={style} onClick={this.togglePersonsHandler}>
                     Toggle list
                 </button> */}
-                <StyledButton onClick={this.togglePersonsHandler}>
+                <StyledButton
+                    alt={this.state.showPersons}
+                    onClick={this.togglePersonsHandler}>
                     Toggle list
                 </StyledButton>
                 {persons}
