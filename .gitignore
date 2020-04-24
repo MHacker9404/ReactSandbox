@@ -274,12 +274,14 @@ FakesAssemblies/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
+/.pnp
+.pnp.js
 
 # testing
-/coverage
+coverage/
 
 # production
-/build
+build/
 
 # Visual Studio 6 build log
 *.plg
