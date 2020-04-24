@@ -2,8 +2,6 @@ import React from 'react';
 import classes from './Person.module.css';
 
 const person = (props) => {
-    console.info(props);
-
     return (
         <div className={classes.Person}>
             <p>

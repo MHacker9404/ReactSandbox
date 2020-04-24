@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 function App() {
     const [persons, setPersons] = useState([
@@ -20,9 +21,7 @@ function App() {
     };
 
     const togglePersonsHandler = () => {
-        console.log(`togglePersonsHandler - ${showPersons}`);
         setShowPersons(!showPersons);
-        console.log(`togglePersonsHandler - ${showPersons}`);
     };
 
     const deletePersonHandler = (index) => {
@@ -38,14 +37,16 @@ function App() {
             <div>
                 {persons.map((person, index) => {
                     return (
-                        <Person
-                            key={person.id}
-                            name={person.name}
-                            age={person.age}
-                            click={() => deletePersonHandler(index)}
-                            changed={(event) => nameChangedHandler(event, person.id)}>
-                            <p>My hobby is {person.hobby}</p>
-                        </Person>
+                        <ErrorBoundary key={person.id}>
+                            <Person
+                                key={person.id}
+                                name={person.name}
+                                age={person.age}
+                                click={() => deletePersonHandler(index)}
+                                changed={(event) => nameChangedHandler(event, person.id)}>
+                                My hobby is {person.hobby}
+                            </Person>
+                        </ErrorBoundary>
                     );
                 })}
             </div>
