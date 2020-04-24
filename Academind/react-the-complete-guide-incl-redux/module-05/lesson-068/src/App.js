@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 // import Radium, { StyleRoot } from 'radium';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const StyledButton = styled.button`
-    background-color: ${(props) => (props.alt ? 'coral' : 'lightgreen')};
-    color: ${(props) => (props.alt ? 'black' : 'red')};
-    font: inherit;
-    border: 2px dashed blue;
-    padding: 8px;
-    cursor: pointer;
-    &:hover {
-        background-color: darkcyan;
-        color: black;
-    }
-`;
+// const StyledButton = styled.button`
+//     background-color: ${(props) => (props.alt ? 'coral' : 'lightgreen')};
+//     color: ${(props) => (props.alt ? 'black' : 'red')};
+//     font: inherit;
+//     border: 2px dashed blue;
+//     padding: 8px;
+//     cursor: pointer;
+//     &:hover {
+//         background-color: darkcyan;
+//         color: black;
+//     }
+// `;
 
 class App extends Component {
     state = {
@@ -100,14 +100,14 @@ class App extends Component {
             <div className='App'>
                 <h1>Hi, I'm a React App</h1>
                 <p className={classes.join(' ')}>This is really working!</p>
-                {/* <button style={style} onClick={this.togglePersonsHandler}>
+                <button className='button' onClick={this.togglePersonsHandler}>
                     Toggle list
-                </button> */}
-                <StyledButton
+                </button>
+                {/* <StyledButton
                     alt={this.state.showPersons}
                     onClick={this.togglePersonsHandler}>
                     Toggle list
-                </StyledButton>
+                </StyledButton> */}
                 {persons}
             </div>
             // </StyleRoot>
