@@ -3,7 +3,8 @@ import styles from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-function App() {
+//  lesson 87 - we don't have access to lifecycle hooks in functional components
+function App(props) {
     const [persons, setPersons] = useState([
         { id: '1', name: 'Phil', age: 53 },
         { id: '2', name: 'Clara', age: 57, hobby: 'IFM' },
@@ -42,7 +43,7 @@ function App() {
 
     return (
         <div className={styles.App}>
-            <Cockpit persons={persons} showPersons={showPersons} click={togglePersonsHandler} />
+            <Cockpit title={props.appTitle} persons={persons} showPersons={showPersons} click={togglePersonsHandler} />
             {personsView}
         </div>
     );
