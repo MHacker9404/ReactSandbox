@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styles from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+// import Aux from '../HOC/Auxiliary';
+// import WithClass from '../HOC/WithClass';
+import withClass2 from '../HOC/withClass2';
 
 //  lesson 87 - we don't have access to lifecycle hooks in functional components
 class App extends Component {
@@ -83,13 +86,11 @@ class App extends Component {
         let personsView = null;
         if (this.state.showPersons) {
             personsView = (
-                <div>
-                    <Persons
-                        persons={this.state.persons}
-                        clicked={this.deletePersonHandler}
-                        changed={this.nameChangedHandler}
-                    />
-                </div>
+                <Persons
+                    persons={this.state.persons}
+                    clicked={this.deletePersonHandler}
+                    changed={this.nameChangedHandler}
+                />
             );
         }
         let cockpitView = null;
@@ -104,14 +105,21 @@ class App extends Component {
             );
         }
 
+        // return (
+        //     <WithClass className={styles.App}>
+        //         <button onClick={this.toggleCockpitHandler}>Toggle cockpit</button>
+        //         {cockpitView}
+        //         {personsView}
+        //     </WithClass>
+        // );
         return (
-            <div className={styles.App}>
+            <>
                 <button onClick={this.toggleCockpitHandler}>Toggle cockpit</button>
                 {cockpitView}
                 {personsView}
-            </div>
+            </>
         );
     };
 }
 
-export default App;
+export default withClass2(App, styles.App);
