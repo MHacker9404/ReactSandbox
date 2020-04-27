@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Person.module.css';
 
-const person = (props) => {
-    console.info('[Person.js] render');
+class Person extends Component {
+    constructor(props) {
+        super(props);
+        console.log('[Person.js] constructor');
+    }
 
-    return (
-        <div className={classes.Person}>
-            <p>
-                I'm {props.name} and I am {props.age} years old!
-            </p>
-            <p onClick={props.click}>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name} />
-        </div>
-    );
-};
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('[Person.js] shouldComponentUpdate', nextProps, nextState, nextContext);
+        return true;
+    }
 
-export default person;
+    render = () => {
+        return (
+            <div className={classes.Person}>
+                <p>
+                    I'm {this.props.name} and I am {this.props.age} years old!
+                </p>
+                <p onClick={this.props.click}>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.name} />
+            </div>
+        );
+    };
+}
+
+export default Person;

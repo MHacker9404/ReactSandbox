@@ -7,27 +7,46 @@ import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
     constructor(props) {
         super(props);
-        console.info('[App.js] constructor');
+
+        this.state = {
+            persons: [
+                { id: '1', name: 'Phil', age: 53 },
+                { id: '2', name: 'Clara', age: 57, hobby: 'IFM' },
+                { id: '3', name: 'Branden', age: 20, hobby: 'Computer Games' },
+            ],
+            otherState: 'some other value',
+            showPersons: false,
+        };
+
+        console.info('[App.js] constructor', props, this.state);
     }
 
-    state = {
-        persons: [
-            { id: '1', name: 'Phil', age: 53 },
-            { id: '2', name: 'Clara', age: 57, hobby: 'IFM' },
-            { id: '3', name: 'Branden', age: 20, hobby: 'Computer Games' },
-        ],
-        otherState: 'some other value',
-        showPersons: false,
-    };
-
+    //  don't cause side-effects: http calls, etc.
     static getDerivedStateFromProps(props, state) {
         console.info('getDerivedStateFromProps', props, state);
 
         return state;
     }
 
-    componentWillMount() {
-        console.info('componentWillMount');
+    //  don't cause side-effects
+    //  may cancel updating process
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.info('shouldComponentUpdate', nextProps, nextState, nextContext);
+
+        return true;
+    }
+
+    //  don't cause side-effects
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.info('getSnapshotBeforeUpdate', prevProps, prevState);
+
+        return { message: 'snapshot' };
+    }
+
+    //  don't update state
+    //  do cause side-effects
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        console.info('componentDidUpdate', prevProps, prevState, snapShot);
     }
 
     componentDidMount() {
