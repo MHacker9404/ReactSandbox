@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import classes from './Person.module.css';
+import PropTypes from 'prop-types';
+import styles from './Person.module.css';
+import withClassName from '../../../HOC/withClassName';
 
 class Person extends Component {
     constructor(props) {
@@ -11,8 +13,8 @@ class Person extends Component {
         console.info('[Person.js] rendering....');
 
         return (
-            <React.Fragment className={classes.Person}>
-                <p onClick={this.props.click}>
+            <React.Fragment>
+                <p onClick={this.props.clicked}>
                     I'm {this.props.name} and I am {this.props.age} years old!
                 </p>
                 <div>{this.props.children}</div>
@@ -22,4 +24,11 @@ class Person extends Component {
     };
 }
 
-export default Person;
+Person.propTypes = {
+    clicked: PropTypes.func,
+    changed: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+};
+
+export default withClassName(Person, styles.Person);

@@ -4,7 +4,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 // import Aux from '../HOC/Auxiliary';
 // import WithClass from '../HOC/WithClass';
-import withClass2 from '../HOC/withClass2';
+import withClassName from '../HOC/withClassName';
 
 //  lesson 87 - we don't have access to lifecycle hooks in functional components
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
             otherState: 'some other value',
             showPersons: false,
             showCockpit: true,
+            changeCounter: 0,
         };
 
         console.info('[App.js] constructor', props, this.state);
@@ -63,6 +64,12 @@ class App extends Component {
         state[index].name = event.target.value;
 
         this.setState({ persons: state });
+        this.setState((prevState, props) => {
+            return {
+                persons: state,
+                changeCounter: prevState.changeCounter + 1,
+            };
+        });
     };
 
     togglePersonsHandler = () => {
@@ -122,4 +129,4 @@ class App extends Component {
     };
 }
 
-export default withClass2(App, styles.App);
+export default withClassName(App, styles.App);
