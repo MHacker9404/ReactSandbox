@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Cockpit.module.css';
 
-const cockipt = (props) => {
-    console.info('[cockipt.js] render');
+const Cockipt = (props) => {
+    useEffect(() => {
+        console.info('[cockipt.js] useEffect');
+
+        //  http request
+        setTimeout(() => {
+            alert(`empty dependencies - runs first time only`);
+        }, 1000);
+    }, []);
+
+    useEffect(() => {
+        console.info('[cockipt.js] useEffect');
+
+        //  http request
+        setTimeout(() => {
+            alert(`saved data to cloud`);
+        }, 1000);
+    }, [props.persons]);
 
     const classes = [];
     if (props.persons.length <= 2) {
@@ -23,4 +39,4 @@ const cockipt = (props) => {
     );
 };
 
-export default cockipt;
+export default Cockipt;
