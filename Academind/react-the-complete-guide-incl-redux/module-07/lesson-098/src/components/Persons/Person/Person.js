@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Person.module.css';
+// import Aux from '../../../HOC/Auxiliary';
 
 class Person extends Component {
     constructor(props) {
@@ -8,14 +9,16 @@ class Person extends Component {
     }
 
     render = () => {
+        console.info('[Person.js] rendering....');
+
         return (
-            <div className={classes.Person}>
-                <p>
+            <>
+                <p onClick={this.props.click}>
                     I'm {this.props.name} and I am {this.props.age} years old!
                 </p>
-                <p onClick={this.props.click}>{this.props.children}</p>
+                <div>{this.props.children}</div>
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </div>
+            </>
         );
     };
 }

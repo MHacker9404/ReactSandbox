@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 // import styles from './Persons.module.css';
 import Person from './Person/Person';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import _ from 'lodash';
+// import _ from 'lodash';
 
-class Persons extends Component {
+//  PureComponent implements shouldComponentUpdate to check all the values in props for changes
+class Persons extends PureComponent {
     constructor(props) {
         super(props);
         console.info('[Persons.js] constructor');
@@ -15,12 +16,12 @@ class Persons extends Component {
         console.info('[Persons.js] componentWillUnmount');
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        const update = !_(this.props).isEqual(nextProps);
-        console.log(`[Persons.js] shouldComponentUpdate - ${update}`, this.props, nextProps, nextState, nextContext);
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     const update = !_(this.props).isEqual(nextProps);
+    //     console.log(`[Persons.js] shouldComponentUpdate - ${update}`, this.props, nextProps, nextState, nextContext);
 
-        return update;
-    }
+    //     return update;
+    // }
 
     render = () => {
         console.info('[Persons.js] render');
@@ -34,7 +35,7 @@ class Persons extends Component {
                         age={person.age}
                         click={() => this.props.clicked(index)}
                         changed={(event) => this.props.changed(event, person.id)}>
-                        My hobby is {person.hobby}
+                        <p>My hobby is {person.hobby}</p>
                     </Person>
                 </ErrorBoundary>
             );
