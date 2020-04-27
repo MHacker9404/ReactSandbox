@@ -6,10 +6,11 @@ const Cockipt = (props) => {
         console.info('[cockipt.js] useEffect');
 
         //  http request
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             alert(`empty dependencies - runs first time only`);
         }, 1000);
         return () => {
+            clearTimeout(timer);
             console.info('[cockipt.js] callback for dismount');
         };
     }, []);

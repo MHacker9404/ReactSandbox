@@ -7,11 +7,6 @@ class Person extends Component {
         console.log('[Person.js] constructor');
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log('[Person.js] shouldComponentUpdate', nextProps, nextState, nextContext);
-        return true;
-    }
-
     render = () => {
         return (
             <div className={classes.Person}>

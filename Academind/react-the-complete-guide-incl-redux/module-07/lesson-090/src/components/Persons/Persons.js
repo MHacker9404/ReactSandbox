@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import styles from './Persons.module.css';
 import Person from './Person/Person';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import _ from 'lodash';
 
 class Persons extends Component {
     constructor(props) {
@@ -12,6 +13,13 @@ class Persons extends Component {
     //  use this for component cleanup when removed from the DOM
     componentWillUnmount() {
         console.info('[Persons.js] componentWillUnmount');
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        const update = !_(this.props).isEqual(nextProps);
+        console.log(`[Persons.js] shouldComponentUpdate - ${update}`, this.props, nextProps, nextState, nextContext);
+
+        return update;
     }
 
     render = () => {
