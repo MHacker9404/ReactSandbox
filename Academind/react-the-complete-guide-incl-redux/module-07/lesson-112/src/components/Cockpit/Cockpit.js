@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import styles from './Cockpit.module.css';
 import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
     const toggleButtonRef = useRef(null);
+    const authContext = useContext(AuthContext);
 
     useEffect(() => {
         console.info('[cockipt.js] useEffect');
@@ -35,21 +36,18 @@ const Cockpit = (props) => {
     }
 
     return (
-        <AuthContext.Consumer>
-            {(context) => (
-                <div>
-                    <h1>{props.title}</h1>
-                    <p className={classes.map((cn) => styles[cn]).join(' ')}>This is really working!</p>
-                    <button
-                        ref={toggleButtonRef}
-                        className={props.showPersons ? styles.buttonLoaded : styles.buttonUnloaded}
-                        onClick={props.click}>
-                        Toggle list
-                    </button>
-                    <button onClick={context.login}>Log in</button>
-                </div>
-            )}
-        </AuthContext.Consumer>
+        <div>
+            <h1>{props.title}</h1>
+            <p className={classes.map((cn) => styles[cn]).join(' ')}>This is really working!</p>
+            <button
+                ref={toggleButtonRef}
+                className={props.showPersons ? styles.buttonLoaded : styles.buttonUnloaded}
+                onClick={props.click}>
+                Toggle list
+            </button>
+            {/* <AuthContext.Consumer>{(context) => <button onClick={context.login}>Log in</button>}</AuthContext.Consumer> */}
+            <button onClick={authContext.login}>Log in</button>
+        </div>
     );
 };
 

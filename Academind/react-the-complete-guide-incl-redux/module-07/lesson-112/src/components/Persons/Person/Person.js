@@ -12,6 +12,8 @@ class Person extends Component {
         console.log('[Person.js] constructor', props);
     }
 
+    static contextType = AuthContext;
+
     componentDidMount() {
         // this.inputElement.focus();
         this.inputElementRef.current.focus();
@@ -22,9 +24,7 @@ class Person extends Component {
 
         return (
             <React.Fragment>
-                <AuthContext.Consumer>
-                    {(context) => (context.authenticated ? <p>Authenticated</p> : <p>Please Login</p>)}
-                </AuthContext.Consumer>
+                {this.context.authenticated ? <p>Authenticated</p> : <p>Please Login</p>}
                 <p onClick={this.props.clicked}>
                     I'm {this.props.name} and I am {this.props.age} years old!
                 </p>
