@@ -6,7 +6,14 @@ import withClassName from '../../../HOC/withClassName';
 class Person extends Component {
     constructor(props) {
         super(props);
+        this.inputElementRef = React.createRef();
+
         console.log('[Person.js] constructor');
+    }
+
+    componentDidMount() {
+        // this.inputElement.focus();
+        this.inputElementRef.current.focus();
     }
 
     render = () => {
@@ -18,7 +25,17 @@ class Person extends Component {
                     I'm {this.props.name} and I am {this.props.age} years old!
                 </p>
                 <div>{this.props.children}</div>
-                <input type="text" onChange={this.props.changed} value={this.props.name} />
+                <input
+                    type="text"
+                    //  prior to react 16.3 - use this form of ref
+                    //  this cannot be used in functional components
+                    // ref={(el) => {
+                    //     this.inputElement = el;
+                    // }}
+                    ref={this.inputElementRef}
+                    onChange={this.props.changed}
+                    value={this.props.name}
+                />
             </React.Fragment>
         );
     };

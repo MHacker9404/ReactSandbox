@@ -1,16 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './Cockpit.module.css';
 
 const Cockpit = (props) => {
+    const toggleButtonRef = useRef(null);
+
     useEffect(() => {
         console.info('[cockipt.js] useEffect');
 
-        //  http request
-        const timer = setTimeout(() => {
-            alert(`empty dependencies - runs first time only`);
-        }, 1000);
+        // //  http request
+        // const timer = setTimeout(() => {
+        //     alert(`empty dependencies - runs first time only`);
+        // }, 1000);
+        // return () => {
+        //     clearTimeout(timer);
+        //     console.info('[cockipt.js] callback for dismount');
+        // };
+
+        //  have to do this in useEffect so it runs after the render is executed
+        toggleButtonRef.current.click();
+
         return () => {
-            clearTimeout(timer);
             console.info('[cockipt.js] callback for dismount');
         };
     }, []);
@@ -35,7 +44,10 @@ const Cockpit = (props) => {
         <div>
             <h1>{props.title}</h1>
             <p className={classes.map((cn) => styles[cn]).join(' ')}>This is really working!</p>
-            <button className={props.showPersons ? styles.buttonLoaded : styles.buttonUnloaded} onClick={props.click}>
+            <button
+                ref={toggleButtonRef}
+                className={props.showPersons ? styles.buttonLoaded : styles.buttonUnloaded}
+                onClick={props.click}>
                 Toggle list
             </button>
         </div>
