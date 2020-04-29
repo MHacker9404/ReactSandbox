@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.module.scss';
+import css from './App.module.scss';
 import Layout from './components/Layout/Layout';
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import WithClassName from './HOC/withClassName';
 
 // import logo from './logo.svg';
 // import Button from './Button/Button';
@@ -9,7 +11,7 @@ function App() {
     return (
         <>
             <Layout>
-                <p>Main Area - Burger Builder</p>
+                <BurgerBuilder />
             </Layout>
         </>
 
@@ -32,4 +34,4 @@ function App() {
     );
 }
 
-export default App;
+export default WithClassName(App, css.app);
