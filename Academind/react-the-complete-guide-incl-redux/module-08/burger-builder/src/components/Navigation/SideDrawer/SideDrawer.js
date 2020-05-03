@@ -1,21 +1,20 @@
 import React from 'react';
-import css from './Toolbar.module.scss';
+import css from './SideDrawer.module.scss';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
-const toolbar = (props) => {
+const sideDrawer = (props) => {
     return (
-        <header className={css.Toolbar}>
-            <div>MENU</div>
-            {/* <Logo height="80%" /> */}
+        <div className={css.SideDrawer}>
+            {/* <Logo height="11%" /> */}
             <div className={css.Logo}>
                 <Logo />
             </div>
-            <nav className={css.DesktopOnly}>
+            <nav>
                 <NavigationItems />
             </nav>
-        </header>
+        </div>
     );
 };
 
-export default toolbar;
+export default sideDrawer;
