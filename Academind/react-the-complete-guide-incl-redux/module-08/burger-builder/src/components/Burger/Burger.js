@@ -12,7 +12,6 @@ const burger = (props) => {
     const reduced = ingredients.reduce((prev, current) => {
         return prev.concat(current);
     }, []);
-    console.info(props.ingredients, keys, ingredients, reduced);
 
     // if (reduced.length === 0) {
     let view = _some(reduced) ? reduced : <p>Please choose some ingredients</p>;

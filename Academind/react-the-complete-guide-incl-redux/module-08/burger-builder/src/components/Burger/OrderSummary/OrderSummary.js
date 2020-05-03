@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './OrderSummary.module.scss';
+// import css from './OrderSummary.module.scss';
 
 const orderSummary = (props) => {
     let view = null;
