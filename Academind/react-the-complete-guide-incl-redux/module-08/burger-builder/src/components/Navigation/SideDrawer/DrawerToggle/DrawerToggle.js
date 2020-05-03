@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './DrawerToggle.module.scss';
-import WithClassName from '../../../../HOC/withClassName';
+// import WithClassName from '../../../../HOC/withClassName';
 
 const drawerToggle = (props) => {
     return (

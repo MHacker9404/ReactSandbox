@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import css from './Layout.module.scss';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 class Layout extends Component {
     state = {
@@ -26,7 +26,6 @@ class Layout extends Component {
         <>
             <Toolbar toggleSideDrawer={this.sideDrawerToggleHandler} />
             <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler} />
-            <p>backdrop</p>
             <hr />
             <main className={css.content}>{this.props.children}</main>
         </>
