@@ -26,4 +26,4 @@ const burger = (props) => {
     );
 };
 
-export default WithClassName(burger, css.burger);
+export default WithClassName(burger, css.Burger);
