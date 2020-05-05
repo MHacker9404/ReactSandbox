@@ -8,7 +8,14 @@ import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
 import css from './Blog.module.scss';
 
+import log from '../../logger';
+const _log = log('blog');
+
 class Blog extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         posts: [],
         currentPostId: null,
@@ -23,13 +30,17 @@ class Blog extends Component {
         //     }));
         //     this.setState({ posts: authoredPosts });
         // });
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        const posts = _cloneDeep(_slice(response.data, 0, 4));
-        const authoredPosts = posts.map((post) => ({
-            ...post,
-            author: 'Phil',
-        }));
-        this.setState({ posts: authoredPosts });
+        try {
+            const response = await axios.get('/posts');
+            const posts = _cloneDeep(_slice(response.data, 0, 4));
+            const authoredPosts = posts.map((post) => ({
+                ...post,
+                author: 'Phil',
+            }));
+            this.setState({ posts: authoredPosts });
+        } catch (error) {
+            _log.error('Exception', error);
+        }
     };
 
     onArticleSelected = async (id) => {

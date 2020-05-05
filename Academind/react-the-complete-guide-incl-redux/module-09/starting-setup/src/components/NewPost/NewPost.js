@@ -17,7 +17,7 @@ class NewPost extends Component {
             author: this.state.author,
         };
 
-        const response = await axios.post(`https://jsonplaceholder.typicode.com/posts`, data);
+        const response = await axios.post(`/posts`, data);
         console.info(response);
     };
 
