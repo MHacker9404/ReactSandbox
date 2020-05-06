@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import css from './Modal.module.scss';
 import Backdrop from '../Backdrop/Backdrop';
+// import _isEqual from 'lodash/isEqual';
 
 class Modal extends Component {
     componentDidUpdate = (prevProps, prevState) => {
-        console.info('[Modal] componentDidUpdate: ');
+        // console.info('[Modal] componentDidUpdate: ');
     };
 
     shouldComponentUpdate = (nextProps, nextState, nextContext) => {
-        const update = nextProps.show !== this.props.show;
-        console.info(`[Modal] shouldComponentUpdate - ${update}`, this.props, nextProps);
+        const update = nextProps.show !== this.props.show || nextProps.children !== this.props.children;
+        // const result = _isEqual(this.props, nextProps);
+        // console.info(`[Modal] shouldComponentUpdate - ${result}:${update}`);
         return update;
     };
 
