@@ -35,6 +35,8 @@ class Posts extends Component {
     };
 
     render() {
+        console.info('[Posts}: ', this.props);
+
         const postsView = this.state.error ? (
             <p style={{ textAlign: 'center' }}>Something went wrong!</p>
         ) : (
